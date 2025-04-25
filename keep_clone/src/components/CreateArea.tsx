@@ -1,9 +1,11 @@
 import React, {useState} from "react";
 import AddIcon from '@mui/icons-material/Add';
-import { Fab } from "@mui/material";
+import Fab from '@mui/material/Fab';
 import { Zoom } from "@mui/material";
 
-function CreateArea(props) {
+function CreateArea(props: {
+  addNote: Function;
+}) {
   const [newNote, setNote] = useState({
     title: "",
     content: ""
@@ -14,14 +16,14 @@ function CreateArea(props) {
 		setCreateTapped(true);
 	}
 
-  function handleNoteChange(event: { target: { name: any; value: any; }; }){
+  function handleNoteChange(event: { target: { name: string; value: string; }; }){
     const {name, value} = event.target;
     setNote(prevItem => {
       return {...prevItem, [name]:value};
     });
   }
 
-  function submitNote(event) {
+  function submitNote(event: React.MouseEvent<HTMLButtonElement>) {
     props.addNote(newNote);
     setNote({
       title: "",

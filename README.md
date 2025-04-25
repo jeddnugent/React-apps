@@ -1,4 +1,4 @@
-# React-apps
+# React apps
 Series of Web apps created to aid in learning React
 
 To run these apps locally after cloneing this repo or downloading the code

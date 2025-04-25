@@ -14,7 +14,7 @@ function CreateArea(props) {
 		setCreateTapped(true);
 	}
 
-  function handleNoteChange(event){
+  function handleNoteChange(event: { target: { name: any; value: any; }; }){
     const {name, value} = event.target;
     setNote(prevItem => {
       return {...prevItem, [name]:value};
@@ -33,8 +33,8 @@ function CreateArea(props) {
   return (
     <div>
       <form className="create-note">
-        <input type={!createTapped && "hidden"} onChange={handleNoteChange} name="title" placeholder="Title" value={newNote.title}/>
-        <textarea onClick={handleCreateTapped} onChange={handleNoteChange} name="content" placeholder="Take a note..." rows={createTapped ? "3" : "1"} value={newNote.content}/>
+        <input type={createTapped ? "text" : "hidden"} onChange={handleNoteChange} name="title" placeholder="Title" value={newNote.title}/>
+        <textarea onClick={handleCreateTapped} onChange={handleNoteChange} name="content" placeholder="Take a note..." rows={createTapped ? 3 : 1} value={newNote.content}/>
         <Zoom in={createTapped}>
           <Fab onClick={submitNote}>
             <AddIcon />

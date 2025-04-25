@@ -1,10 +1,18 @@
 import React, {useState} from "react";
+import AddIcon from '@mui/icons-material/Add';
+import { Fab } from "@mui/material";
+import { Zoom } from "@mui/material";
 
 function CreateArea(props) {
   const [newNote, setNote] = useState({
     title: "",
     content: ""
-  })
+  });
+	const [createTapped, setCreateTapped] = useState(false);
+
+	function handleCreateTapped(){
+		setCreateTapped(true);
+	}
 
   function handleNoteChange(event){
     const {name, value} = event.target;
@@ -24,10 +32,15 @@ function CreateArea(props) {
 
   return (
     <div>
-      <form>
-        <input onChange={handleNoteChange} name="title" placeholder="Title" value={newNote.title}/>
-        <textarea onChange={handleNoteChange} name="content" placeholder="Take a note..." rows="3" value={newNote.content}/>
-        <button onClick={submitNote}>Add</button>
+      <form className="create-note">
+        <input type={!createTapped && "hidden"} onChange={handleNoteChange} name="title" placeholder="Title" value={newNote.title}/>
+        <textarea onClick={handleCreateTapped} onChange={handleNoteChange} name="content" placeholder="Take a note..." rows={createTapped ? "3" : "1"} value={newNote.content}/>
+        <Zoom in={createTapped}>
+          <Fab onClick={submitNote}>
+            <AddIcon />
+        	</Fab>
+        </Zoom>
+        
       </form>
     </div>
   );

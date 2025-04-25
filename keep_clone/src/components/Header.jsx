@@ -1,9 +1,10 @@
 import React from "react";
+import HighlightIcon from "@mui/icons-material/Highlight";
 
 function Header(){
     return(
         <header>
-            <h1>Keep dat</h1>
+            <h1><HighlightIcon />Keep dat</h1>
         </header>
     );
 }
